@@ -149,6 +149,7 @@
   .optin-form button{border:none;background:var(--verde);color:var(--crema);padding:13px 26px;font-family:'Special Elite',monospace;font-size:15px;letter-spacing:.05em;cursor:pointer;transition:transform .15s ease;}
   .optin-form button:hover{transform:scale(1.03);}
   .optin-note{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--verde-suave);margin-top:16px;margin-bottom:0;}
+  .optin-success{font-size:16px;line-height:1.6;color:var(--verde);background:var(--sombra);border:2px solid var(--verde);padding:16px 18px;margin:0;}
 
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
   .reveal.in{opacity:1;transform:none;}
@@ -291,10 +292,13 @@
       <span style="display:block;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--verde-suave);margin-bottom:10px;">Guía gratuita · No. 003</span>
       <h3>7 hábitos para dormir mejor y calmar el estrés</h3>
       <p>Una guía corta y práctica, con los primeros pasos que comparto con mis pacientes. Déjame tu correo y te la envío.</p>
-      <form class="optin-form" onsubmit="return false;">
-        <input type="email" placeholder="tu@correo.com" aria-label="Tu correo electrónico" required>
+      <form class="optin-form" name="guia-optin" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/?enviado=true">
+        <input type="hidden" name="form-name" value="guia-optin">
+        <p hidden><label>No llenar esto si eres humano: <input name="bot-field"></label></p>
+        <input type="email" name="email" placeholder="tu@correo.com" aria-label="Tu correo electrónico" required>
         <button type="submit">Quiero mi guía →</button>
       </form>
+      <p class="optin-success" hidden>¡Listo! 🌿 Recibí tu correo. Te envío la guía muy pronto — revisa tu bandeja (y la carpeta de spam, por si acaso).</p>
       <p class="optin-note">Sin spam · Solo bienestar · Cancela cuando quieras</p>
     </div>
   </div>
@@ -330,6 +334,23 @@
     els.forEach(el=>io.observe(el));
   } else {
     els.forEach(el=>el.classList.add('in'));
+  }
+
+  // Envío del formulario de la guía sin recargar la página (Netlify Forms)
+  const optinForm=document.querySelector('.optin-form');
+  if(optinForm){
+    optinForm.addEventListener('submit',e=>{
+      e.preventDefault();
+      const body=new URLSearchParams(new FormData(optinForm)).toString();
+      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body})
+        .then(r=>{
+          if(!r.ok) throw new Error('bad response');
+          optinForm.hidden=true;
+          const ok=document.querySelector('.optin-success');
+          if(ok){ok.hidden=false;}
+        })
+        .catch(()=>{ optinForm.submit(); });
+    });
   }
 </script>
 
