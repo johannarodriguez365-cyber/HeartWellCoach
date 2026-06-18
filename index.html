@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HeartWell Coach — Coaching Integral de Salud</title>
+<meta name="description" content="Acompaño a mujeres profesionales a salir del burnout. Coaching integral de salud en español — cuerpo, mente y espíritu. Agenda tu sesión gratuita.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde:#1F4D3F;
+    --verde-suave:#2C5E4F;
+    --crema:#F4EFE6;
+    --sombra:#EBE3D3;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Special Elite','Courier New',monospace;
+    color:var(--verde);
+    background:#F4EFE6;
+    background-image:
+      radial-gradient(rgba(31,77,63,.05) 1px, transparent 1.2px),
+      radial-gradient(rgba(31,77,63,.04) 1px, transparent 1.2px);
+    background-size:5px 5px, 7px 7px;
+    background-position:0 0, 2px 3px;
+    line-height:1.75;
+    font-size:17px;
+  }
+  .wrap{max-width:780px;margin:0 auto;padding:0 24px;}
+
+  .topbar{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:22px 0;border-bottom:3px solid var(--verde);
+  }
+  .brandline{font-size:13px;letter-spacing:.3em;text-transform:uppercase;}
+  .brandline::before{content:"●";margin-right:10px;font-size:10px;vertical-align:1px;}
+  .stamp{
+    display:inline-block;border:2px solid var(--verde);
+    padding:8px 16px;font-size:12px;letter-spacing:.25em;text-transform:uppercase;
+    transform:rotate(-3deg);background:var(--crema);white-space:nowrap;
+  }
+
+  .kicker{
+    font-size:13px;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--verde-suave);margin-bottom:14px;
+  }
+  .kicker::before{content:"●";margin-right:10px;font-size:9px;vertical-align:1px;}
+
+  .divider{
+    border:none;border-top:3px dashed var(--verde);opacity:.55;margin:18px 0 26px;
+  }
+
+  .hl{
+    background:var(--verde);color:var(--crema);
+    padding:2px 12px 4px;display:inline-block;transform:rotate(-1.5deg);
+  }
+
+  .hero{padding:84px 0 70px;}
+  .hero h1{
+    font-size:clamp(40px,7vw,62px);line-height:1.18;font-weight:400;margin-bottom:22px;
+  }
+  .hero .sub{font-size:19px;max-width:560px;margin-bottom:30px;}
+  .chips{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:38px;}
+  .chip{
+    border:2px solid var(--verde);background:var(--sombra);
+    padding:8px 18px;font-size:12px;letter-spacing:.15em;text-transform:uppercase;
+  }
+  .chip.solid{background:var(--verde);color:var(--crema);}
+
+  .ticket{
+    display:inline-block;position:relative;border:3px dashed var(--verde);
+    padding:18px 56px;background:var(--crema);text-decoration:none;color:var(--verde);
+    transition:transform .15s ease;
+  }
+  .ticket:hover{transform:rotate(-1deg) scale(1.02);}
+  .ticket::before,.ticket::after{
+    content:"";position:absolute;top:50%;width:24px;height:24px;border-radius:50%;
+    background:var(--verde);transform:translateY(-50%);
+  }
+  .ticket::before{left:-13px;}
+  .ticket::after{right:-13px;}
+  .ticket .tk-label{display:block;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--verde-suave);border-bottom:1px dashed var(--verde);padding-bottom:6px;margin-bottom:8px;}
+  .ticket .tk-main{font-size:20px;}
+  .ticket .tk-main .hl{transform:rotate(0deg);padding:0 10px 2px;}
+
+  .ticket.invert{background:var(--verde);color:var(--crema);border-color:var(--crema);}
+  .ticket.invert::before,.ticket.invert::after{background:var(--crema);}
+  .ticket.invert .tk-label{color:var(--sombra);border-color:var(--crema);}
+  .ticket.invert .tk-main .hl{background:var(--crema);color:var(--verde);}
+
+  section{padding:64px 0;}
+  section h2{font-size:clamp(28px,4.5vw,38px);font-weight:400;line-height:1.25;margin-bottom:6px;}
+  section p{margin-bottom:18px;max-width:620px;}
+  .lead{font-size:20px;}
+
+  .sombra-bg{background:var(--sombra);border-top:3px solid var(--verde);border-bottom:3px solid var(--verde);}
+
+  .photo-frame{
+    background:var(--crema);padding:10px;box-shadow:0 14px 30px rgba(31,77,63,.25);
+    transform:rotate(-3deg);max-width:340px;margin:36px auto 10px;position:relative;
+  }
+  .photo-frame img{width:100%;display:block;filter:grayscale(35%) sepia(18%) brightness(95%);}
+  .photo-frame .tape{
+    position:absolute;top:-14px;left:50%;width:120px;height:28px;
+    background:rgba(44,94,79,.55);transform:translateX(-50%) rotate(-4deg);
+  }
+  .photo-cap{text-align:center;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--verde-suave);margin-top:18px;}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-top:34px;}
+  .card{border:2px solid var(--verde);background:var(--crema);padding:26px 22px;}
+  .card .num{font-size:12px;letter-spacing:.25em;color:var(--verde-suave);display:block;margin-bottom:10px;}
+  .card h3{font-size:19px;font-weight:400;margin-bottom:10px;}
+  .card p{font-size:15px;margin:0;}
+
+  .quote-block{border-left:4px solid var(--verde);padding-left:24px;margin:26px 0;}
+  .quote-block p{font-size:21px;line-height:1.6;margin-bottom:10px;}
+
+  .cta-dark{
+    background:var(--verde);
+    background-image:
+      radial-gradient(rgba(244,239,230,.05) 1px, transparent 1.2px),
+      radial-gradient(rgba(244,239,230,.04) 1px, transparent 1.2px);
+    background-size:5px 5px, 7px 7px;background-position:0 0, 2px 3px;
+    color:var(--crema);text-align:center;padding:92px 0;
+  }
+  .cta-dark .kicker{color:var(--sombra);}
+  .cta-dark h2{font-size:clamp(30px,5vw,44px);font-weight:400;line-height:1.3;margin-bottom:14px;}
+  .cta-dark p{margin:0 auto 40px;max-width:520px;}
+  .cta-dark .hl{background:var(--crema);color:var(--verde);}
+
+  footer{padding:40px 0 54px;border-top:3px solid var(--verde);}
+  footer .frow{display:flex;flex-wrap:wrap;gap:14px 30px;justify-content:space-between;align-items:center;}
+  footer a{color:var(--verde);text-decoration:none;border-bottom:1px dashed var(--verde);}
+  footer .fmeta{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--verde-suave);margin-top:22px;}
+
+  .optin{background:var(--sombra);border-top:3px solid var(--verde);border-bottom:3px solid var(--verde);}
+  .optin-card{border:3px dashed var(--verde);background:var(--crema);padding:38px 32px;position:relative;max-width:620px;margin:30px auto 0;}
+  .optin-card::before,.optin-card::after{content:"";position:absolute;top:50%;width:26px;height:26px;border-radius:50%;background:var(--sombra);transform:translateY(-50%);}
+  .optin-card::before{left:-15px;}
+  .optin-card::after{right:-15px;}
+  .optin-card h3{font-size:23px;font-weight:400;line-height:1.3;margin-bottom:12px;}
+  .optin-card p{font-size:15px;margin-bottom:20px;}
+  .optin-form{display:flex;flex-wrap:wrap;gap:12px;}
+  .optin-form input{flex:1 1 220px;border:2px solid var(--verde);background:#fff;padding:13px 16px;font-family:'Special Elite',monospace;font-size:15px;color:var(--verde);}
+  .optin-form input::placeholder{color:var(--verde-suave);opacity:.7;}
+  .optin-form button{border:none;background:var(--verde);color:var(--crema);padding:13px 26px;font-family:'Special Elite',monospace;font-size:15px;letter-spacing:.05em;cursor:pointer;transition:transform .15s ease;}
+  .optin-form button:hover{transform:scale(1.03);}
+  .optin-note{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--verde-suave);margin-top:16px;margin-bottom:0;}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+  a:focus-visible,.ticket:focus-visible{outline:3px solid var(--verde-suave);outline-offset:4px;}
+  .cta-dark a:focus-visible{outline-color:var(--crema);}
+
+  @media (max-width:560px){
+    .topbar{flex-direction:column;gap:14px;}
+    .hero{padding:60px 0 54px;}
+    section{padding:48px 0;}
+    .ticket{padding:16px 40px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap topbar">
+  <span class="brandline">Heartwell · Health Coaching</span>
+  <span class="stamp">Coach Integral</span>
+</header>
+
+<!-- HERO -->
+<div class="hero wrap">
+  <p class="kicker">Cuerpo · Mente · Espíritu</p>
+  <h1>No tienes que<br>verlo todo <span class="hl">sola.</span></h1>
+  <hr class="divider">
+  <p class="sub">Acompaño a mujeres profesionales a salir del burnout y recuperar su energía — en español, paso a paso, sin fórmulas imposibles.</p>
+  <div class="chips">
+    <span class="chip">Estrés</span>
+    <span class="chip">Sueño</span>
+    <span class="chip solid">Burnout</span>
+    <span class="chip">Hábitos</span>
+  </div>
+  <a class="ticket" href="https://calendly.com/heartwellcoach">
+    <span class="tk-label">Cupón · No. 001</span>
+    <span class="tk-main">Agenda tu sesión <span class="hl">gratuita</span></span>
+  </a>
+</div>
+
+<!-- HISTORIA -->
+<section class="wrap reveal">
+  <p class="kicker">01 · Mi historia</p>
+  <h2>Dos países, la misma historia</h2>
+  <hr class="divider">
+  <p class="lead">Más de 10 años trabajando en salud, entre Colombia y Estados Unidos. Y en los dos países vi exactamente lo mismo.</p>
+  <p>Personas agotadas. Estresadas. Atrapadas en hábitos que las estaban enfermando.</p>
+  <p>No por falta de ganas. Por falta de alguien que les mostrara <em>por dónde empezar</em>.</p>
+  <div class="photo-frame">
+    <span class="tape"></span>
+    <img src="https://heartwellcoaches.com/assets/images/image01.jpg" alt="Johanna, coach integral de salud de HeartWell Coach">
+  </div>
+  <p class="photo-cap">Johanna · Tu coach</p>
+</section>
+
+<!-- EL MOMENTO -->
+<section class="sombra-bg reveal">
+  <div class="wrap">
+    <p class="kicker">02 · El momento que lo cambió todo</p>
+    <h2>Lo descubrí en las conversaciones con mis pacientes</h2>
+    <hr class="divider">
+    <div class="quote-block">
+      <p>Caminar 30 minutos.</p>
+      <p>Una taza de té sin teléfono.</p>
+      <p>Una buena conversación.</p>
+    </div>
+    <p>Cosas pequeñas. Y ahí, justo ahí, todo empezaba a <span class="hl">cambiar.</span></p>
+  </div>
+</section>
+
+<!-- LA VERDAD INCÓMODA -->
+<section class="wrap reveal">
+  <p class="kicker">03 · La verdad incómoda</p>
+  <h2>También entendí algo difícil</h2>
+  <hr class="divider">
+  <p class="lead">El burnout es un círculo vicioso que se vuelve cómodo.</p>
+  <p>Sabes que quieres salir. Pero desde adentro, no se ve la <span class="hl">puerta.</span></p>
+</section>
+
+<!-- EL DESCUBRIMIENTO -->
+<section class="sombra-bg reveal">
+  <div class="wrap">
+    <p class="kicker">04 · El descubrimiento</p>
+    <h2>Nadie puede ver sus propios puntos ciegos</h2>
+    <hr class="divider">
+    <p class="lead">No es que no quieras cambiar. Es que nadie puede ver sus propios puntos ciegos.</p>
+    <p>Necesitas lo que yo llamo un <span class="hl">chaperone:</span> alguien que camine contigo y te ayude a ver lo que tú sola no puedes.</p>
+  </div>
+</section>
+
+<!-- PARA QUIÉN -->
+<section class="wrap reveal">
+  <p class="kicker">05 · Para quién</p>
+  <h2>Esto es para ti si…</h2>
+  <hr class="divider">
+  <p class="lead">Hoy acompaño a mujeres profesionales a salir del burnout.</p>
+  <p>Y sí — ser ama de casa también es una profesión. De las más exigentes.</p>
+  <p>Si das todo por los demás y no queda nada para ti, <span class="hl">esto es para ti.</span></p>
+
+  <p style="margin-top:34px;font-size:13px;letter-spacing:.25em;text-transform:uppercase;color:var(--verde-suave);">Lo que tocamos en cada sesión — todos somos diferentes</p>
+  <div class="chips" style="margin-bottom:0;">
+    <span class="chip">Salud física</span>
+    <span class="chip">Emocional</span>
+    <span class="chip">Espiritual</span>
+    <span class="chip">Relaciones</span>
+    <span class="chip">Propósito</span>
+    <span class="chip solid">Y más…</span>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <span class="num">A · Sesiones 1:1</span>
+      <h3>Coaching personal</h3>
+      <p>Estrés, sueño y hábitos. Acompañamiento personalizado, 100% virtual y en español.</p>
+    </div>
+    <div class="card">
+      <span class="num">B · Empresas</span>
+      <h3>Bienestar corporativo</h3>
+      <p>Charlas y talleres para equipos: manejo del estrés, sistema nervioso y descanso.</p>
+    </div>
+    <div class="card">
+      <span class="num">C · Sin costo</span>
+      <h3>Sesión gratuita</h3>
+      <p>30 minutos para conversar sobre dónde estás y hacia dónde quieres ir.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OPTIN FUNNEL -->
+<section class="optin reveal">
+  <div class="wrap">
+    <p class="kicker">06 · Empieza hoy, gratis</p>
+    <h2>¿Todavía no estás lista para agendar?</h2>
+    <hr class="divider">
+    <p>Empieza por algo pequeño. Descarga mi guía gratuita y da el primer paso <span class="hl">hoy mismo.</span></p>
+    <div class="optin-card">
+      <span style="display:block;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--verde-suave);margin-bottom:10px;">Guía gratuita · No. 003</span>
+      <h3>7 hábitos para dormir mejor y calmar el estrés</h3>
+      <p>Una guía corta y práctica, con los primeros pasos que comparto con mis pacientes. Déjame tu correo y te la envío.</p>
+      <form class="optin-form" onsubmit="return false;">
+        <input type="email" placeholder="tu@correo.com" aria-label="Tu correo electrónico" required>
+        <button type="submit">Quiero mi guía →</button>
+      </form>
+      <p class="optin-note">Sin spam · Solo bienestar · Cancela cuando quieras</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-dark reveal">
+  <div class="wrap">
+    <p class="kicker">07 · El siguiente paso</p>
+    <h2>No tienes que verlo todo sola.<br>Removemos las capas, <span class="hl">una a una.</span></h2>
+    <p>Tu descanso no es un lujo. Es el comienzo.</p>
+    <a class="ticket invert" href="https://calendly.com/heartwellcoach">
+      <span class="tk-label">Cupón · No. 002</span>
+      <span class="tk-main">Agenda tu sesión <span class="hl">gratuita</span></span>
+    </a>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="frow">
+    <a href="https://www.instagram.com/heartwellcoach">@heartwellcoach</a>
+    <a href="mailto:heartwellcoach@gmail.com">heartwellcoach@gmail.com</a>
+    <a href="tel:+19712661121">971 266-1121</a>
+    <a href="https://calendly.com/heartwellcoach">Calendly</a>
+  </div>
+  <p class="fmeta">Heartwell Coach © 2026 · heartwellcoaches.com · Coaching virtual en español · EE.UU. y Latinoamérica · — Tu coach</p>
+</footer>
+
+<script>
+  const els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+    els.forEach(el=>io.observe(el));
+  } else {
+    els.forEach(el=>el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
